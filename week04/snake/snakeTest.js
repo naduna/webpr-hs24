@@ -2,12 +2,21 @@
 const snakeOk = [];
 
 //  before start, snake is in start position
-    snakeOk.push(pairEq(snake[0]) (Pair(10)(5)));
+    console.log(Pair(10)(5))
+    console.log(Pair(10)(5)(fst))
+    snakeOk.push(pairEq (snake[0]) (Pair(10)(5)));
+    
+    // test plus functionality
+    const resultPair1 = pairPlus (Pair(10)(5)) (Pair(10)(5)); 
+    snakeOk.push(pairEq (resultPair1) (Pair(20)(10)));
+    
+    const resultPairMapped = pairMap(i => i+1)(Pair(2)(5));
+    snakeOk.push(pairEq (resultPairMapped) (Pair(3)(6)));
 
 
 //  after one step, snake has moved up
     nextBoard();
-    snakeOk.push(pairEq(snake[0]) (Pair(10)(4)));
+    snakeOk.push(pairEq (snake[0]) (Pair(10)(4)));
 
 //  before eating food, snake is of size 4
     snakeOk.push(snake.length === 4);
@@ -29,7 +38,7 @@ const snakeOk = [];
     snakeOk.push(direction === north);
 
 // test result report
-if ( snakeOk.every(elem => elem) ) {
+if ( snakeOk.every(id) ) {
     document.writeln("All " + snakeOk.length + " tests ok.");
 } else {
     document.writeln("Not all tests ok! Details:");
