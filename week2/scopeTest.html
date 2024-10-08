@@ -9,13 +9,13 @@
 
     const test = x => document.writeln(String(x));
 
-    let x = 0;
+    let y = 0;
     function foo() {
-        let x = 1;
-        document.writeln(String(x));
+        let y = 1;
+        document.writeln(String(y));
     }
     foo();
-    document.writeln(String(x));
+    document.writeln(String(y));
 
     const id = x => x;
 
@@ -42,6 +42,23 @@
     // const snd = fst(id);
     // test(snd(1)(2))
 
+    test("--------------");
+
+    // let x = 0;
+    function two() {
+        x = 2;
+        return x;
+    }
+    two();
+
+    try { // is x in scope?
+        x
+        document.writeln(x === 0)
+    } catch (g) {
+        document.writeln(false + "catch");
+    }
+    
+    
     test("--------------");
 
     // let x = 0;
@@ -113,18 +130,18 @@
     //     document.writeln(false);
     // }
 
-    const id = x => x;
-    const konst = x => y => x;
-
-    const F1 = x => y => konst(id)(x)(y);
-    const F2 = x      => konst(id)(x);
-    const F3 =           konst(id);
-    
-    test(F1(1));
-    test("---");
-    test(F2(1));
-    test("---");
-    test(F3(1));
+    // const id = x => x;
+    // const konst = x => y => x;
+    //
+    // const F1 = x => y => konst(id)(x)(y);
+    // const F2 = x      => konst(id)(x);
+    // const F3 =           konst(id);
+    //
+    // test(F1(1));
+    // test("---");
+    // test(F2(1));
+    // test("---");
+    // test(F3(1));
 
 </script>
 </body>

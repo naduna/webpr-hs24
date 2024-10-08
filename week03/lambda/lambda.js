@@ -22,8 +22,8 @@ const or = a => b => a(T)(b)
 const flip = f => x => y => f(y)(x)
 
 const Pair = fn => ln => fnOrLn => fnOrLn(fn)(ln);
-const firstname = konst;
-const lastname = kite;
+// const firstname = konst;
+// const lastname = kite;
 
 const Left = x => f => g => f(x);
 const Right = x => f => g => g(x);

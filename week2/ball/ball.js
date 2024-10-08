@@ -65,3 +65,20 @@ function fillBox(context) {
 }
 
 
+const Left   = x => f => g => f (x);
+const Right  = x => f => g => g (x);
+const either = e => f => g => e (f) (g);
+const id = x => x;
+const x_ = Math.random();
+const safeDiv = num => divisor =>
+    divisor === 0
+        ? Left  ("Cannot divide by 0")
+        : Right (num / divisor);
+
+const eShow = fn => either(fn)
+    (id) // goes as param of Left/Right to f; error message
+    (x => "Result is: " + x); // goes as param of Left/Right to g; success
+
+console.log(eShow( safeDiv(1)(0)));
+console.log(eShow( safeDiv(x_)(1)));
+console.log(eShow( safeDiv(1)(0))  === "Cannot divide by 0" && eShow( safeDiv(x_)(1)) === "Result is: "+x_);
