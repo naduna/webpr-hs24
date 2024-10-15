@@ -82,11 +82,12 @@ function nextBoard() {
     const max = 20;
     const oldHead = snake[0];
 
-    const newHead = pairPlus (oldHead) (direction); // todo: your code here: old head plus direction
-    const head    = Pair (inBounds(newHead(fst))) (inBounds(newHead(snd))); // todo: your code here: new head put in bounds
+    const newHead = pairPlus (oldHead) (direction); // old head plus direction
+    const head    = pairMap (inBounds) (newHead); // new head put in bounds
+    // const head    = Pair (inBounds(newHead(fst))) (inBounds(newHead(snd))); // new head put in bounds
 
     const pickRandom = () => Math.floor(Math.random() * max);
-    if (pairEq(head)(food)) {  // todo: have we found any food?
+    if (pairEq(head)(food)) {  // have we found any food?
         food = Pair(pickRandom())(pickRandom());
     } else {
         snake.pop(); // no food found => no growth despite new head => remove last element
