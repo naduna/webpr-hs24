@@ -8,8 +8,17 @@ function start() {
     const userFunction = document.getElementById('user_function');
     const canvas       = document.getElementById('canvas');
 
-    // todo: how to display?
+    // how to display? = very inefficiently, as it gets evaluated 100 times each time
+    // display(canvas, x=> eval(userFunction.value));
+    // userFunction.onchange = (y => display(canvas, x=> eval(userFunction.value)));
+    
+    const f = _ => Function("x", "return " + userFunction.value);
+    display(canvas, f());
 
+    // onchange: on enter or on blur/leave
+    userFunction.onchange =  _ => display(canvas, f()); // erzeuge eine neue funktion, die den wert neu ausliest
+    
+    // TODO: how to manage console.log(1) as input but it doesn't appear 100 times
 }
 
 function display(canvas, f) {
