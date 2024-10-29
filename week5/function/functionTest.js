@@ -55,8 +55,10 @@ e.bonus === e.revenue * 0.2;
 console.log(e.bonus, e.revenue, e.bonus === e.revenue * 0.2)
 
 
+const bonusFormula2 = 'employee.revenue * 0.2';
 const f = _ => Function("x", "return " + userFunction.value);
-const bonusCalculation5 = e => Function("employee", bonusFormula)(e);
+const bonusCalculation4 = e => Function("employee", "employee.bonus = " + bonusFormula2)(e);
+const bonusCalculation5 = e => e.bonus = Function("employee", "return " + bonusFormula2)(e);
 
 const e5 = {revenue: 10000, bonus: null};
 bonusCalculation5(e5);
