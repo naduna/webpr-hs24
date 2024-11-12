@@ -9,7 +9,7 @@
 
     const collect = [];
 
-    (10).times( n => collect.push(n) );
+    (10).times1( n => collect.push(n) );
 
     ok.push(collect.length === 10);
     ok.push(collect[0] === 0);
@@ -23,11 +23,25 @@
 
 
 
-    const collect = (10).times( n => n+1 );
+    const collect = (10).times1( n => n+1 );
 
     ok.push(collect.length === 10);
     ok.push(collect[0] === 1);
     ok.push(collect[9] === 10);
 
     report("util-times", ok);
+}) ();
+
+( () => {
+    const ok = [];
+
+
+
+    const collect = "10".times( n => n+1 );
+
+    ok.push(collect.length === 10);
+    ok.push(collect[0] === 1);
+    ok.push(collect[9] === 10);
+
+    report("util-times-string", ok);
 }) ();
