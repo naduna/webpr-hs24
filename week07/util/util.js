@@ -14,3 +14,7 @@ Number.prototype.times1 = function(callback) {
 String.prototype.times = function(callback) {
     return Number(this).times1(callback);
 };
+
+Function.prototype.then = function(callback) {
+    return callback.apply(this);
+}
