@@ -24,6 +24,63 @@
 
     document.writeln("\nCheck possible errors in the console .")
 
+    document.writeln("-------------")
+
+    const q17a = () => {
+        function Todo(text) {
+            let done = false;
+            return {
+                getText: () => text,
+                isDone: () => done,
+                check: () => done = true
+            };
+        }
+
+        let todo = Todo("buy milk");
+        todo.check();
+        document.writeln(todo.isDone());
+    }
+    document.writeln(q17a.toString());
+    q17a();
+
+    const q17b = () => {
+        function Todo(text, done) {
+            function check() {
+                done = true;
+            }
+
+            return {
+                getText: () => text,
+                isDone: () => done,
+                check: check
+            };
+        }
+
+        let todo = Todo("buy milk", false);
+        todo.check();
+        document.writeln(todo.isDone());
+    }
+    document.writeln(q17a.toString());
+    q17a();
+
+
+
+    document.writeln("-------------")
+
+
+
+    document.writeln("-------------")
+
+
+
+    document.writeln("-------------")
+
+
+
+    document.writeln("-------------")
+
+
+    document.writeln("-------------")
 </script>
 
 </pre>
