@@ -17,6 +17,8 @@
 
         let fib = n => n < 2 ? 1 : fib(n - 1) + fib(n - 2);
 
+        fib = memoize(fib); // for faster calculation
+        
         out.textContent = `
             ${asCH( fib(3) )}
 

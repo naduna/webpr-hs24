@@ -68,6 +68,22 @@
     document.writeln("-------------")
 
 
+    const xmasTree = n => {
+        const arr = [];
+        const count = (n-1)*2+1;
+        const toPad = (n-1)/2+1;
+        for (let i = 1; i <= n; i++){
+            const stars = "*" + [0..i].map(_ => "*").join("");
+            const starLine = stars.padStart(toPad).padEnd(toPad);
+            arr.push(starLine);
+            document.writeln(starLine)
+        }
+        
+        return arr;
+    };
+
+    xmasTree(4);
+    // xmasTree(4).forEach$(s => document.writeln(s))
 
     document.writeln("-------------")
 

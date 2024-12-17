@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Try Kolibri Production Bundle</title>
+        <style>
+            svg {
+                border: 1px solid green;
+                aspect-ratio: 1 / 1;
+            }
+            svg * {
+                stroke: color-mix(in srgb, #3A0055, transparent);
+                /*stroke: #3A0055;*/
+                stroke-width: 0.01;
+            }
+        </style>
+    </head>
+    <body>
+    <h1>Try Kolibri Production Bundle</h1>
+
+    <div id="out"> waiting ... </div>
+
+    <script> window.BASE_URI = "../"; </script>
+    <script src="./kolibri-0.9.6.js"></script>
+    <script >
+        
+        const getLine = (a,b,slices) => {
+            const alpha = 2 * Math.PI / slices;
+            const x1 = Math.cos(a * alpha);
+            const y1 = Math.sin(a * alpha);
+            const x2 = Math.cos(b * alpha);
+            const y2 = Math.sin(b * alpha);
+            
+            const resultStr = `
+                <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"></line>
+            `;
+            
+            return resultStr;
+        }
+        
+        const lines = (slices, factor) => {
+            let resultStr = "";
+            Walk(1, slices)
+                .map(n => getLine(n, n * factor, slices))
+                .forEach$(str => resultStr += str);
+            
+            return resultStr;
+        }
+
+        const svgString = `
+            <svg viewBox="-1 -1 2 2" xmlns="http://www.w3.org/2000/svg">
+                ${lines(80, 89)}
+            </svg>
+        `;
+        
+        out.innerHTML = svgString;
+    </script>
+
+    </body>
+
+
+</html>
