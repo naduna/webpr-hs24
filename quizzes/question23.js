@@ -4,7 +4,7 @@ const q23_1 = () => {
     const idPromise = x => new Promise(resolve => resolve(x));
     
     const writer = x => {
-        document.writeln(x);
+        document.writeln("q23_1: " + x);
         return idPromise(x);
     };
     
@@ -20,8 +20,8 @@ const q23_2 = () => {
     const idPromise = x => new Promise(resolve => resolve(x));
 
     idPromise(1)
-        .then(it => { document.writeln(it); return idPromise(it); })
-        .then(it => document.writeln(it));
+        .then(it => { document.writeln("q23_2: " + it); return idPromise(it); })
+        .then(it => document.writeln("q23_2: " + it));
 
     // shows '1 1'?
 };
@@ -30,7 +30,7 @@ const q23_3 = () => {
     const idPromise = x => new Promise(resolve => resolve(x));
 
     idPromise(1)
-        .then(it => document.writeln(it));
+        .then(it => document.writeln("q23_3: " + it));
 
     // shows '1'?
 };
@@ -39,13 +39,13 @@ const q23_4 = () => {
     const idPromise = x => new Promise(resolve => resolve(x));
 
     const writer = x => {
-        document.writeln(x);
+        document.writeln("q23_4: " + x);
         return idPromise(x);
     };
 
     idPromise(1)
         .then(writer)
-        .then(it => document.writeln(it));
+        .then(it => document.writeln("q23_4: " + it));
 
     // shows '1 1'?
 };
@@ -54,8 +54,8 @@ const q23_5 = () => {
     const idPromise = x => new Promise(resolve => resolve(x));
 
     idPromise(1)
-        .then(it => { document.writeln(it); return it; })
-        .then(it => document.writeln(it));
+        .then(it => { document.writeln("q23_5: " + it); return it; })
+        .then(it => document.writeln("q23_5: " + it));
 
     // shows '1 1'?
 };
@@ -65,7 +65,7 @@ const q23_6 = () => {
     const idPromise = x => new Promise(resolve => resolve(x));
 
     const writer = x => {
-        document.writeln(x);
+        document.writeln("q23_6: " + x);
         return idPromise(x);
     };
 
@@ -81,7 +81,7 @@ const q23_7 = () => {
     const idPromise = x => new Promise(resolve => resolve(x));
 
     const writer = x => {
-        document.writeln(x);
+        document.writeln("q23_7: " + x);
         return idPromise(x);
     };
     
@@ -89,64 +89,150 @@ const q23_7 = () => {
 
     idPromise(1)
         .then(writer)
-        .then(it => document.writeln(it));
+        .then(filterEven)
+        .then(writer);
+
+    // shows '1'?
+};
+
+const q23_8 = () => {
+    const idPromise = x => new Promise(resolve => resolve(x));
+
+    const writer = x => {
+        document.writeln("q23_8: " + x);
+        return idPromise(x);
+    };
+
+    const filterEven = n => n % 2 === 0 ? n : undefined;
+
+    idPromise(1)
+        .then(writer)
+        .then(filterEven)
+        .then(writer);
+
+    // shows '1 undefined'?
+};
+
+const q23_9 = () => {
+    const idPromise = x => new Promise(resolve => resolve(x));
+
+    idPromise(1)
+        .then(it => document.writeln("q23_9: " + it))
+        .then(it => document.writeln("q23_9: " + it));
 
     // shows '1 1'?
 };
 
-const q23_8 = () => {
-    function handle(callback) {
-        const result = [];
-        callback( result );
-        return result;
-    }
-
-    document.writeln( handle( it.push(1) ).length === 1);
-}
-
-const q23_9 = () => {
-    function handle(callback) {
-        const result = [];
-        callback( result );
-        return result;
-    }
-
-    document.writeln( handle( () => [1] ).length === 1);
-}
-
 const q23_10 = () => {
-    function handle(callback) {
-        const result = [];
-        callback( result );
-        return result;
-    }
+    const idPromise = x => new Promise(resolve => resolve(x));
 
-    let it = [];
-    document.writeln( handle( it => it.push(1) ).length === 1);
-}
+    const writer = x => {
+        document.writeln("q23_10: " + x);
+        return idPromise(x);
+    };
+
+    const filterEven = n => n % 2 === 0 ? n : undefined;
+
+    idPromise(1)
+        .then(writer)
+        .then(filterEven)
+        .then(writer);
+
+    // shows an error in the console?
+};
 
 const q23_11 = () => {
-    function handle(callback) {
-        const result = [];
-        callback( result );
-        return result;
-    }
-    
-    document.writeln( handle( it => it.push(1) ).length === 1);
-}
+    const idPromise = x => new Promise(resolve => resolve(x));
+
+    const writer = x => {
+        document.writeln("q23_11: " + x);
+        return idPromise(x);
+    };
+
+    const filterEven = n => {
+        if (n % 2 === 0) return n; else throw Error("not even");
+    };
+
+    idPromise(1)
+        .then(writer)
+        .then(filterEven)
+        .then(writer)
+        .catch(err => {}); // do nothing
+
+    // shows more than '1'?
+};
 
 const q23_12 = () => {
-    function handle(callback) {
-        const result = [];
-        callback( result );
-        callback( result );
-        return result;
-    }
-    
-    document.writeln( handle( it => it.push(1) ).length === 2);
-}
+    const idPromise = x => new Promise(resolve => resolve(x));
 
-const solveAll23 = () => {
+    document.writeln(idPromise(1))
+
+    // shows '1'?
+};
+
+const q23_13 = () => {
+    const idPromise = x => new Promise(resolve => resolve(x));
+
+    const writer = x => {
+        document.writeln("q23_13: " + x);
+        return idPromise(x);
+    };
+
+    const filterEven = n => {
+        if (n % 2 === 0) return n; else throw Error("not even");
+    };
+
+    idPromise(1)
+        .then(writer)
+        .then(filterEven)
+        .then(writer)
+        .catch(err => {}); // do nothing
+
+    // shows only '1'?
+};
+
+const q23_14 = () => {
+    const idPromise = x => new Promise(resolve => resolve(x));
+
+    const writer = x => {
+        document.writeln("q23_14: " + x);
+        return idPromise(x);
+    };
+
+    const inc = n => n + 1;
+    const filterEven = n => n % 2 === 0 ? n : undefined;
+
+    idPromise(1)
+        .then(writer)
+        .then(inc)
+        .then(filterEven)
+        .then(writer)
+        .catch(err => {}); // do nothing
+
+    // shows '1 2 2'?
+};
+
+const q23_15 = () => {
+    const idPromise = x => new Promise(resolve => resolve(x));
+
+    idPromise(1)
+        .then(it => it)
+        .then(it => document.writeln("q23_15: " + it));
+
+    // shows '1 1'?
+};
+
+const q23_15b = () => {
+    const idPromise = x => new Promise(resolve => resolve(x));
+
+    return idPromise(1)
+        .then(it => it)
+        .then(it => document.writeln("q23_15b: " + it));
+
+    // shows '1 1'?
+};
+
+const solveAll23 = async () => {
     printQuizSection(23);
     
     solveQuiz(q23_1, "q23_1");
@@ -161,4 +247,9 @@ const solveAll23 = () => {
     solveQuiz(q23_10, "q23_10");
     solveQuiz(q23_11, "q23_11");
     solveQuiz(q23_12, "q23_12");
+    solveQuiz(q23_13, "q23_13");
+    solveQuiz(q23_14, "q23_14");
+    solveQuiz(q23_15, "q23_15");
+    
+    await solveQuizAsync(q23_15b, "q23_15b");
 }
